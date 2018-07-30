@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+<section class="my-4">
+<div class="container">
+<form method="POST" action="{% url 'add' %}" class="post-form">
+{% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        {{ field.label }}
+         {{ field }}
+         {{field.errors}}
+    </div>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
+</div>
+</section>
+
+{% endblock content %}
