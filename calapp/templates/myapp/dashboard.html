@@ -2,13 +2,78 @@
 
 {% block content %}
 
+<script>
+       function filter(e) {
+        if (e == 'all') {
+            e = ""
+        }
+        window.location = "{% url 'dashboard' %}?day=" + e;
+    }
+           function filterYear(e) {
+        if (e == 'all') {
+            e = ""
+        }
+        window.location = "{% url 'dashboard' %}?year=" + e;
+    }
+           function filterMonth(e) {
+        if (e == 'all') {
+            e = ""
+        }
+        window.location = "{% url 'dashboard' %}?month=" + e;
+    }
+</script>
+<section>
+    <div class="container">
+        <div class="row justify-content-end">
+              <div class="col-3">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1"></label>
+                    <select class="form-control" onchange="filterYear(this.value)" id="exampleFormControlSelect1">
+                        <option value="all">Year</option>
+                        <option value="all">All</option>
+                         {% for entry in entries.qs %}
+                            <option>{{entry.date.year}}</option>
+                         {% endfor %}
+
+                    </select>
+                </div>
+            </div>
+                  <div class="col-3">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1"></label>
+                    <select class="form-control" onchange="filterMonth(this.value)" id="exampleFormControlSelect1">
+                        <option value="all">Month</option>
+                        <option value="all">All</option>
+                         {% for date in "x"|rjust:"12" %}
+                            <option>{{forloop.counter}}</option>
+                         {% endfor %}
+
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1"></label>
+                    <select class="form-control" onchange="filter(this.value)" id="exampleFormControlSelect1">
+                        <option value="all">Date</option>
+                        <option value="all">All</option>
+                         {% for date in "x"|rjust:"31" %}
+                            <option>{{forloop.counter}}</option>
+                         {% endfor %}
+
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
 <div class="">
     <div class="container">
             <div class="row">
             
-                {% for entry in entries %}
+                {% for entry in entries.qs %}
                    {% include 'myapp/_calendar_entry.html' %}
                 {% endfor %}
             </div>

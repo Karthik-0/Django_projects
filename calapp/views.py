@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from .forms import EventForm
+from .filters import DateFilter
 
 
 def index(request):
@@ -59,8 +60,13 @@ def delete(request, pk):
 
 @login_required
 def dashboard(request):
-    entries = Entry.objects.filter(user=request.user)
-    return render(request, 'myapp/dashboard.html', {'entries': entries})
+    # entries = Entry.objects.filter(user=request.user)
+    f = DateFilter(request.GET,
+                   queryset=Entry.objects.filter(user=request.user))
+    # print("hello")
+    # print(dir(f))
+    # print(f.qs)
+    return render(request, 'myapp/dashboard.html', {'entries': f})
 
 
 def signup(request):
