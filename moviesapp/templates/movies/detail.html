@@ -1,0 +1,39 @@
+{% extends 'movies/base.html' %}
+
+{% block head %}
+
+    <style>
+        html,body{
+            background:hsl(0, 0%, 14%);
+            color: #fff;
+        }
+        strong{
+            color: #6D5BC8;
+        }
+    </style>
+
+{% endblock head %}
+
+{% block content %}
+
+ <section>
+    <div class="container">
+        <div class="columns  is-vcentered">
+            <div class="column">
+                <img src="{{movie.cover_image}}" class="image" alt="">
+            </div>
+            <div class="column has-text-white">
+                <strong>Name : </strong> {{movie.title}} <br>
+                <strong>Subtitle : </strong> {{movie.subtitle}} <br>    
+                <strong>Directors: </strong> {% for director in movie.directors.all %}{{director}} {% endfor %}<br>
+                <strong>Studio : </strong> {{movie.studio.title}} <br>
+                <strong>Release Date : </strong> {{movie.release_date}} <br>
+                <strong>Genre : </strong> {% for genre in movie.genre.all %}{{genre.title}} {% endfor %} <br>
+                <strong>ASIN : </strong> {{movie.asin}} <br>
+                <strong>Review : </strong> <p>{{movie.review}}</p> <br>
+            </div>
+        </div>
+    </div>
+ </section>
+
+{% endblock content %}
