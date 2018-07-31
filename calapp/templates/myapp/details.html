@@ -1,15 +1,53 @@
-{% extends 'myapp/base.html' %}
-
-{% block content %}
+{% extends 'myapp/base.html' %} {% block content %}
 
 <div class="">
     <div class="container">
         <div class="row my-5 py-4 text-white px-4 bg-info h-100">
             <div class="col-md-12 my-auto">
-                <h2><b>{{entry.name}}</b></h2>
+                <h2>
+                    <b>{{entry.name}}</b>
+                </h2>
                 <hr>
-                <h4 class="text-white">{{entry.date}}</h4>
+                <h4 class="text-white">{{entry.date}} - {{entry.user}}</h4>
                 <p>{{entry.description}}</p>
+                <h4>Events</h4>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Start Time</th>
+                            <th scope="col">End Time</th>
+                            <th scope="col">Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for entrytime in entry.time.all %}
+                           <tr>
+                            <th scope="row">1</th>
+                            <td>{{entrytime.start_time}}</td>
+                            <td>{{entrytime.end_time}}</td>
+                            <td>{% for entrytime in entry.time.all %}
+                {% if entrytime.all_day == False %}
+                    {{entrytime.duration}}
+                    
+                    {% comment %} {{entrytime.all_day}} {% endcomment %}
+                {% else %}
+                    All Day
+                {% endif %}</td>
+                        </tr>
+                        {% endfor %}
+                    {% endfor %}
+                     
+                    
+                        
+                    </tbody>
+                </table>
+                <h4>Place</h4>
+                    <strong>Name : </strong>{{entry.place.title}} <br>
+                    <strong>Address : </strong> {{entry.place.desc}} <br>
+                    <strong>Phone : </strong> {{entry.place.phone}} <br>
+                    <strong>City : </strong> {{entry.place.city}} <br>
+                    <br>
                 <button onclick="window.location='{% url 'dashboard' %}'" class="btn btn-secondary">Go Back</button>
             </div>
         </div>
