@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'taggit',
     'placesapp',
-    'eventsapp',
+    'calapp',
     'django.contrib.gis',
     'django_filters',
 ]

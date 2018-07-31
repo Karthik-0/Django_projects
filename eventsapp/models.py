@@ -1,8 +1,9 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
-from placesapp.models import Place
+from taggit.managers import TaggableManager
 
 
-# class Event(Place, TimeStampedModel):
-#     title = models.CharField(max_length=50)
-#     place = models.ManyToManyField("Place")
+class Event(TimeStampedModel):
+    title = models.CharField(max_length=50)
+    place = models.ForeignKey("placesapp.Place", on_delete=models.CASCADE)
+    tags = TaggableManager()
