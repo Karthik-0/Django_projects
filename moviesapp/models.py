@@ -27,6 +27,9 @@ class Movie(models.Model):
             self.slug = slugify(self.title)
         super(Movie, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
+
 
 class Studio(models.Model):
     title = models.CharField(max_length=200)
@@ -39,6 +42,9 @@ class Studio(models.Model):
             self.slug = slugify(self.title)
         super(Studio, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
+
 
 class Genre(models.Model):
     title = models.CharField(max_length=200)
@@ -49,11 +55,14 @@ class Genre(models.Model):
             self.slug = slugify(self.title)
         super(Genre, self).save(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
+
 
 class Director(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    middle_name = models.CharField(max_length=50)
+    middle_name = models.CharField(max_length=50, blank=True)
     phone = models.IntegerField()
     birth_date = models.DateField(auto_now=False, auto_now_add=False)
     website = models.URLField(max_length=200)
@@ -62,3 +71,7 @@ class Director(models.Model):
         default='male',
         max_length=6
     )
+
+    def __str__(self):
+        return '{} {} {}'.format(self.first_name,
+                                 self.middle_name, self.last_name)
