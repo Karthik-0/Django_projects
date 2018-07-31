@@ -32,7 +32,7 @@ def add(request):
                 author=request.user,
                 description=description
             ).save()
-            return HttpResponseRedirect('/dashboard')
+            return HttpResponseRedirect('events/dashboard')
     else:
         form = EntryForm()
     return render(request, 'myapp/form.html', {'form': form})
@@ -44,12 +44,12 @@ def delete(request, pk):
         entry = get_object_or_404(Entry, pk=pk)
         print(entry)
         entry.delete()
-    return HttpResponseRedirect('/dashboard')
+    return HttpResponseRedirect('events/dashboard')
 
 
 @login_required
 def dashboard(request):
-    entries = Entry.objects.filter(author=request.user)
+    entries = Entry.objects.filter(user=request.user)
     return render(request, 'myapp/dashboard.html', {'entries': entries})
 
 
@@ -62,7 +62,7 @@ def signup(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('/dashboard')
+            return redirect('events/dashboard')
     else:
         form = UserCreationForm()
     return render(request, 'registration/signup.html', {'form': form})
