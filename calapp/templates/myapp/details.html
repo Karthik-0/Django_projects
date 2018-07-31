@@ -26,7 +26,7 @@
                             <th scope="row">1</th>
                             <td>{{entrytime.start_time}}</td>
                             <td>{{entrytime.end_time}}</td>
-                            <td>{% for entrytime in entry.time.all %}
+                            <td>
                 {% if entrytime.all_day == False %}
                     {{entrytime.duration}}
                     
@@ -35,7 +35,7 @@
                     All Day
                 {% endif %}</td>
                         </tr>
-                        {% endfor %}
+                   
                     {% endfor %}
                      
                     
