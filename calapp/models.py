@@ -19,7 +19,7 @@ class EventTime(models.Model):
         null=True
         )
     duration = models.DurationField(blank=True, default=0)
-    all_day = models.BooleanField()
+    all_day = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         if (self.start_time and self.end_time) is not None:
