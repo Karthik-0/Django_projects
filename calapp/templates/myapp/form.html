@@ -6,14 +6,7 @@
     </h2>
         <form method="post">
                 {% csrf_token %}
-                    {% for field in form %}
-                        
-                        <div class="form-group">
-                                <label>{{field.label}}</label>
-                                <input name={{ field.name }} class="form-control">
-                              </div>
-                              <div class="text-danger"> {{field.errors}}</div>
-                    {% endfor %}
+                 {{form.as_p}}
             <button class="btn btn-primary" type="submit">Submit</button>
             </form>
 </div>

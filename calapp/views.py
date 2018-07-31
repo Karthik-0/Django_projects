@@ -3,8 +3,10 @@ from .models import Entry
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .forms import EntryForm
+from django.utils.decorators import method_decorator
 from django.contrib.auth.forms import UserCreationForm
+from django.views import generic
+from .forms import EventForm
 
 
 def index(request):
@@ -18,10 +20,18 @@ def details(request, pk):
     return render(request, 'myapp/details.html', {'entry': entry})
 
 
+@method_decorator(login_required, name='dispatch')
+class AddView(generic.CreateView):
+    template_name = 'myapp/form.html'
+    model = Entry
+    success_url = '/events/dashboard'
+    form_class = EventForm
+
+
 @login_required
 def add(request):
     if request.method == 'POST':
-        form = EntryForm(request.POST)
+        form = EventForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             date = form.cleaned_data['date']
@@ -34,7 +44,7 @@ def add(request):
             ).save()
             return HttpResponseRedirect('events/dashboard')
     else:
-        form = EntryForm()
+        form = EventForm()
     return render(request, 'myapp/form.html', {'form': form})
 
 
