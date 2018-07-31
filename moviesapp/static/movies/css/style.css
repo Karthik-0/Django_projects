@@ -1,0 +1,32 @@
+body{
+    font-family: 'Raleway', sans-serif;
+}
+a.navbar-item{
+    color: #B79FDF;
+}
+.my-1{
+    margin: 1rem auto;
+}
+.my-2{
+    margin: 2rem auto;
+}
+.my-3{
+    margin: 3rem auto;
+}
+hr{
+    background: #B79FDF;
+}
+.img-fluid{
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+.color{
+    color: #B79FDF;
+}
+.colordark{
+    color: #6D5BC8;
+}
+.has-text-white,.white{
+    color: #fff;
+}
