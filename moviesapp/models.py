@@ -27,6 +27,9 @@ class Movie(models.Model):
             self.slug = slugify(self.title)
         super(Movie, self).save(*args, **kwargs)
 
+    def amazonurl(self, *args, **kwargs):
+        return 'http://amazon.com/blablablaa/{}'.format(self.slug)
+
     def __str__(self):
         return self.title
 
