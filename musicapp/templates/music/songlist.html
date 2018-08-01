@@ -9,19 +9,21 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Album</th>
+      <th scope="col">Tracks</th>
       <th scope="col">Band</th>
       <th scope="col">Label</th>
       <th> Release Date</th>
     </tr>
   </thead>
   <tbody>
-      {% for album in albums %}
+      {% for track in tracks %}
      <th scope="row">{{forloop.counter}}</th>
-      <td><a href="{% url 'music:detail' album.slug %}">{{album}}</a></td>
-      <td>{{album.band}}</td>
-      <td>{{album.label}}</td>
-      <td>{{album.release_date | date:"d/m/Y" }}</td>
+      <td><a href="{% url 'music:song_detail' track.slug %}">{{track}}</a></td>
+      <td>{{track.band}}</td>
+      <td>{{track.album}}</td>
+      <td>{% for genre in track.genre.all %}
+      {{genre}}  
+      {% endfor %}</td>
     {% endfor %}
     <tr>
 

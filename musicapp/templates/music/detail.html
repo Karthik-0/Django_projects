@@ -5,23 +5,26 @@
 <section>
 <div class="container p-4 my-4 shadowy">
 
+   <h3 class="text-primary text-center"> {{album}}</h3>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Album</th>
+      <th scope="col">Tracks</th>
       <th scope="col">Band</th>
-      <th scope="col">Label</th>
-      <th> Release Date</th>
+      <th scope="col">Genre</th>
+      <th> Song</th>
     </tr>
   </thead>
   <tbody>
-      {% for album in albums %}
+      {% for track in album.tracks.all %}
      <th scope="row">{{forloop.counter}}</th>
-      <td><a href="{% url 'music:detail' album.slug %}">{{album}}</a></td>
-      <td>{{album.band}}</td>
-      <td>{{album.label}}</td>
-      <td>{{album.release_date | date:"d/m/Y" }}</td>
+      <td>{{track}}</td>
+      <td>{{track.band}}</td>
+      <td>{% for genre in track.genre.all %}
+        {{genre}} 
+        {% endfor %}</td>
+      <td>{{track.song}}</td>
     {% endfor %}
     <tr>
 
