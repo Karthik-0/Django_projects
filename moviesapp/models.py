@@ -13,13 +13,16 @@ class Movie(models.Model):
     prefix = models.CharField(max_length=50)
     subtitle = models.CharField(max_length=200)
     slug = models.SlugField(blank=True)
-    directors = models.ManyToManyField("Director", verbose_name=("Director"), related_name='moviedirector')
+    directors = models.ManyToManyField("Director", verbose_name=("Director"),
+                                       related_name='moviedirector')
     studio = models.ForeignKey("Studio", verbose_name=("Studio"),
-                               on_delete=models.CASCADE, related_name='moviestudio')
+                               on_delete=models.CASCADE,
+                               related_name='moviestudio')
     release_date = models.DateField(auto_now=False, auto_now_add=False)
     cover_image = models.URLField(max_length=200)
     review = models.TextField()
-    genre = models.ManyToManyField("Genre", verbose_name=("Genre"), related_name='moviegenre')
+    genre = models.ManyToManyField("Genre", verbose_name=("Genre"),
+                                   related_name='moviegenre')
     asin = models.CharField(max_length=50)
 
     def save(self, *args, **kwargs):
@@ -27,7 +30,8 @@ class Movie(models.Model):
             self.slug = slugify(self.title)
         super(Movie, self).save(*args, **kwargs)
 
-    def amazonurl(self, *args, **kwargs):
+    @property
+    def amazon_url(self, *args, **kwargs):
         return 'http://amazon.com/blablablaa/{}'.format(self.slug)
 
     def __str__(self):

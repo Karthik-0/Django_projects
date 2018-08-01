@@ -1,1 +1,4 @@
 *.pyc
+
+htmlcov
+.pytest_cache
