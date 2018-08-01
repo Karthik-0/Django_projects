@@ -28,7 +28,10 @@
 
   <div id="navbarExampleTransparentExample" class="navbar-menu">
     <div class="navbar-end">
-      <a href="{% url 'movies:index' %}" class="navbar-item">Home</a>
+      <a href="{% url 'movies:index' %}" class="navbar-item">Movies</a>
+      <a href="{% url 'movies:directorindex' %}" class="navbar-item">Directors</a>
+      <a href="{% url 'movies:studioindex' %}" class="navbar-item">Studios</a>
+      <a href="{% url 'movies:genreindex' %}" class="navbar-item">Genres</a>
     </div>
   </div>
 </div>

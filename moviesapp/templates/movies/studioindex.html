@@ -1,0 +1,32 @@
+{% extends 'movies/base.html' %}
+
+{% block head %}
+
+    <style>
+        html,body{
+            background:hsl(0, 0%, 14%);
+            color: #fff;
+        }
+    </style>
+
+{% endblock head %}
+
+{% block content %}
+<hr class="is-marginless">
+    <section class="my-3">
+        <div class="container">
+            <div class="columns">
+                {% for studio in studios %}
+                    <div class="column is-3">
+                       <a href="{% url 'movies:studiodetail' studio.slug %}">
+                            <div class="box border">
+                                <h4><strong class="my-2 colordark">{{studio.title}}</strong></h4>
+                            </div>
+                       </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends 'movies/base.html' %}
+
+{% block head %}
+
+    <style>
+        html,body{
+            background:hsl(0, 0%, 14%);
+            color: #fff;
+        }
+        strong{
+            color: #6D5BC8;
+        }
+    </style>
+
+{% endblock head %}
+
+{% block content %}
+
+ <section>
+    <div class="container">
+        <div class="columns  is-vcentered">
+            <div class="column has-text-white">
+                <strong>Name : </strong> {{studio.title}} <br>
+                <strong>Prefix : </strong> {{studio.prefix}} <br>    
+                <strong>website : </strong> {{studio.website}} <br> 
+                <strong>Movies : </strong> {% for movie in studio.moviestudio.all %} {{movie.title}} {% endfor %} <br> 
+            </div>
+        </div>
+    </div>
+ </section>
+
+{% endblock content %}
