@@ -57,3 +57,5 @@ The required views are
 - Director detail
 
 Consider, movie = Movie.objects.get(id=1). movie.amazon_url should return the Amazon URL for that movie using ASIN. Keep in mind amazon_url is not a model field.
+
+## Music App
