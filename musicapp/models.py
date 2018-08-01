@@ -15,7 +15,7 @@ class SlugMixin(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.name)
         super(SlugMixin, self).save(*args, **kwargs)
 
     class Meta:
@@ -31,9 +31,12 @@ class Track(SlugMixin):
     song = models.FileField(upload_to="songs/", max_length=150)
     genre = models.ManyToManyField("Genre")
 
+    def __str__(self):
+        return self.name
+
 
 class Album(SlugMixin):
-    title = models.CharField(("Title"), max_length=50)
+    name = models.CharField(("Title"), max_length=50)
     prefix = models.CharField(max_length=50)
     asin = models.CharField(("ASIN"), max_length=10)
     band = models.ForeignKey("Band", on_delete=models.CASCADE,
@@ -43,15 +46,24 @@ class Album(SlugMixin):
     cover_image = models.FileField(upload_to="images/", max_length=100)
     release_date = models.DateField(auto_now=False, auto_now_add=False)
 
+    def __str__(self):
+        return self.name
+
 
 class Genre(SlugMixin):
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 
 
 class Label(models.Model):
     name = models.CharField(max_length=150)
     head_quarters = models.CharField(max_length=50)
     website = models.URLField(max_length=200)
+
+    def __str__(self):
+        return self.name
 
 
 class Musician(models.Model):
@@ -66,7 +78,14 @@ class Musician(models.Model):
                              related_name="musicians")
     instrument = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+
 
 class Band(models.Model):
+    name = models.CharField(max_length=50)
     genre = models.ManyToManyField("Genre")
     website = models.URLField(max_length=200)
+
+    def __str__(self):
+        return self.name
