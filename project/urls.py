@@ -21,4 +21,5 @@ urlpatterns = [
     path('places/', include('placesapp.urls')),
     path('events/', include('calapp.urls')),
     path('movies/', include('moviesapp.urls')),
+    path('music/', include('musicapp.urls')),
 ]

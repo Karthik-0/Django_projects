@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'calapp',
     'django.contrib.gis',
     'django_filters',
-    'moviesapp'
+    'moviesapp',
+    'musicapp'
 ]
 
 MIDDLEWARE = [
