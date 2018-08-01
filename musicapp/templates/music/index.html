@@ -1,0 +1,34 @@
+{% extends 'music/base.html' %}
+
+
+{% block content %}
+<section>
+<div class="container p-4 my-4 shadowy">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Album</th>
+      <th scope="col">Band</th>
+      <th scope="col">Label</th>
+      <th> Release Date</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for album in albums %}
+     <th scope="row">{{forloop.counter}}</th>
+      <td>{{album}}</td>
+      <td>{{album.band}}</td>
+      <td>{{album.label}}</td>
+      <td>{{album.release_date | date:"d/m/Y" }}</td>
+    {% endfor %}
+    <tr>
+
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</section>
+{% endblock content %}
