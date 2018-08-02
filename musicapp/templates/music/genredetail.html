@@ -17,15 +17,17 @@
   <tbody>
      
       {% for band in genre.bands.all %}
+
+    <tr>
+
         <th scope="row">{{forloop.counter}}</th>
         <td><a href="{% url 'music:band_detail' band.id %}">{{band.name}}</a></td>
         <td><a href="">{{band.website}}</a></td>
+          </tr>
       {% endfor %}
 
    
-    <tr>
-
-    </tr>
+  
   </tbody>
 </table>
 

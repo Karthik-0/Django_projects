@@ -16,6 +16,7 @@
   </thead>
   <tbody>
       {% for genre in genres %}
+      <tr>
      <th scope="row">{{forloop.counter}}</th>
       <td><a href="{% url 'music:genre_detail' genre.slug %}">{{genre}}</a></td>
      <td>
@@ -23,10 +24,11 @@
       <a href="{% url 'music:song_detail' track.slug %}">{{track}} </a>
       {% endfor %}
       </td>
+       </tr>
     {% endfor %}
-    <tr>
+    
 
-    </tr>
+   
   </tbody>
 </table>
 

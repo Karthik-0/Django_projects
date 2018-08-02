@@ -16,16 +16,18 @@
     </tr>
   </thead>
   <tbody>
-      {% for album in albums %}
+ 
+    
+     {% for album in albums %}
+     <tr>
      <th scope="row">{{forloop.counter}}</th>
       <td><a href="{% url 'music:album_detail' album.slug %}">{{album}}</a></td>
-      <td>{{album.band}}</td>
-      <td>{{album.label}}</td>
+      <td><a href="{% url 'music:band_detail' album.band.id %}">{{album.band}}</a></td>
+      <td><a href="{% url 'music:label_detail' album.label.id%}">{{album.label}}</a></td>
       <td>{{album.release_date | date:"d/m/Y" }}</td>
+        </tr>
     {% endfor %}
-    <tr>
-
-    </tr>
+  
   </tbody>
 </table>
 
