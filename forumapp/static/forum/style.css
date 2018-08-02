@@ -1,0 +1,29 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.shadowy{
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(110,207,202,0.34);
+    -moz-box-shadow: 0px 3px 5px 0px rgba(110,207,202,0.34);
+    box-shadow: 0px 3px 5px 0px rgba(110,207,202,0.34);
+}
+
+.border{
+    transition: 0.3s all ease-in-out;
+}
+
+div.border.postbox:hover{
+    border: 1px solid #158CBA !important;
+}
+
+.dot {
+    height: 25px;
+    width: 25px;
+    /* background-color: #bbb; */
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .ali{
+    margin: 2px 30px;
+  }

@@ -1,0 +1,30 @@
+{% include 'forum/base.html' %}
+{% load custom_filters %}
+{% block content %}
+
+<section class="my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+             {% for post in posts %}
+                <div class="border postbox shadowy my-3 p-3">
+                    <h4 class="text-primary">{{post}}</h4>
+                    <p>{{post.content |truncatechars_html:200}}</p>
+                </div>
+             {% endfor %}
+            </div>
+            <div class="col-md-4">
+                <div class="border my-3 p-3 shadowy">
+                    <a href="" class="btn btn-block btn-primary">Start a Discussion</a>
+                    <hr>
+                  
+                    {% for thread in threads %}
+                        <p><span class="dot d-flex"  style="background:{{"# "|rand_color}}"><strong class="ali">{{thread}}</strong></span></p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

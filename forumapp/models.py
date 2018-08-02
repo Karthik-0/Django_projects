@@ -9,7 +9,8 @@ class Thread(TimeStampedModel):
     title = models.CharField(max_length=50)
     slug = models.SlugField(max_length=140, unique=True, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE,
+                             related_name="threads")
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -31,7 +32,11 @@ class Post(TimeStampedModel):
     content = models.TextField()
     slug = models.SlugField(blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE,
+                             related_name="posts")
+    thread = models.ForeignKey(Thread,
+                               on_delete=models.CASCADE,
+                               related_name="posts")
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -44,6 +49,8 @@ class Post(TimeStampedModel):
 
 class Comment(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE,
+                             related_name="comments")
     created = models.DateField(auto_now_add=True)
-    post = models.ForeignKey("Post", on_delete=models.CASCADE)
+    post = models.ForeignKey("Post", on_delete=models.CASCADE,
+                             related_name="comments")
