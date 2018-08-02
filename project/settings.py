@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'moviesapp',
     'musicapp',
     'calapp',
-    'messageboard'
+    'forumapp'
 ]
 
 MIDDLEWARE = [
@@ -133,4 +133,4 @@ STATIC_URL = '/static/'
 
 SPATIALITE_LIBRARY_PATH = 'mod_spatialite'
 
-# AUTH_USER_MODEL = 'messageboard.CustomUser'
+AUTH_USER_MODEL = 'forumapp.CustomUser'
