@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Album, Track
+from .models import Album, Track, Band
 
 
 class AlbumList(generic.ListView):
@@ -24,3 +24,15 @@ class SongDetail(generic.DetailView):
     template_name = "music/songdetail.html"
     model = Track
     context_object_name = 'track'
+
+
+class BandList(generic.ListView):
+    template_name = "music/bandlist.html"
+    model = Band
+    context_object_name = 'bands'
+
+
+class BandDetail(generic.DetailView):
+    template_name = "music/banddetail.html"
+    model = Band
+    context_object_name = 'band'
