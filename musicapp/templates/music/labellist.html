@@ -1,0 +1,34 @@
+{% extends 'music/base.html' %}
+
+
+{% block content %}
+<section>
+<div class="container p-4 my-4 shadowy">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Label</th>
+      <th scope="col">Website</th>
+      <th scope="col">Albums</th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for label in labels %}
+     <th scope="row">{{forloop.counter}}</th>
+      <td><a href="{% url 'music:label_detail' label.id %}">{{label}}</a></td>
+      <td>{{label.website}}</td>
+      <td>{% for album in label.albums.all %}
+      {{album}}  
+      {% endfor %}</td>
+    {% endfor %}
+    <tr>
+
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</section>
+{% endblock content %}
