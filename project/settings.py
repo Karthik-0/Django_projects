@@ -39,11 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'taggit',
     'placesapp',
-    'calapp',
     'django.contrib.gis',
     'django_filters',
     'moviesapp',
-    'musicapp'
+    'musicapp',
+    'calapp',
+    'messageboard'
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 SPATIALITE_LIBRARY_PATH = 'mod_spatialite'
+
+# AUTH_USER_MODEL = 'messageboard.CustomUser'

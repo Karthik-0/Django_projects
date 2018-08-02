@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import User
 from model_utils.models import TimeStampedModel
 from taggit.managers import TaggableManager
+# from django.conf import settings
 import datetime
 
 
@@ -47,7 +47,8 @@ class EventTime(models.Model):
 
 class Entry(TimeStampedModel):
     name = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(settings.AUTH_USER_MODEL,
+    #                          on_delete=models.CASCADE)
     date = models.DateField()
     time = models.ManyToManyField("calapp.EventTime")
     description = models.TextField()
