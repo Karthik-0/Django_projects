@@ -18,7 +18,7 @@
   <tbody>
       {% for album in albums %}
      <th scope="row">{{forloop.counter}}</th>
-      <td><a href="{% url 'music:detail' album.slug %}">{{album}}</a></td>
+      <td><a href="{% url 'music:album_detail' album.slug %}">{{album}}</a></td>
       <td>{{album.band}}</td>
       <td>{{album.label}}</td>
       <td>{{album.release_date | date:"d/m/Y" }}</td>
