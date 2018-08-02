@@ -13,5 +13,8 @@ urlpatterns = [
     path('labels/', views.LabelList.as_view(), name="label_list"),
     path('label/detail/<int:pk>', views.LabelDetail.as_view(),
          name="label_detail"),
+    path('genres/', views.GenreList.as_view(), name="genre_list"),
+    path('genre/detail/<slug>', views.GenreDetail.as_view(),
+         name="genre_detail"),
     path('song/detail/<slug>', views.SongDetail.as_view(), name="song_detail"),
 ]

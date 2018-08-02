@@ -29,7 +29,7 @@ class Track(SlugMixin):
     album = models.ForeignKey("Album", on_delete=models.CASCADE,
                               blank=True, null=True, related_name="tracks")
     song = models.FileField(upload_to="songs/", max_length=150)
-    genre = models.ManyToManyField("Genre")
+    genre = models.ManyToManyField("Genre", related_name="tracks")
 
     def __str__(self):
         return self.name
@@ -84,7 +84,7 @@ class Musician(models.Model):
 
 class Band(models.Model):
     name = models.CharField(max_length=50)
-    genre = models.ManyToManyField("Genre")
+    genre = models.ManyToManyField("Genre", related_name="bands")
     website = models.URLField(max_length=200)
 
     def __str__(self):

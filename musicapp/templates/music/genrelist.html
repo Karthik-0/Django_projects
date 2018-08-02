@@ -1,0 +1,35 @@
+{% extends 'music/base.html' %}
+
+
+{% block content %}
+<section>
+<div class="container p-4 my-4 shadowy">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Genre</th>
+      <th scope="col">Tracks</th>
+
+    </tr>
+  </thead>
+  <tbody>
+      {% for genre in genres %}
+     <th scope="row">{{forloop.counter}}</th>
+      <td><a href="{% url 'music:genre_detail' genre.slug %}">{{genre}}</a></td>
+     <td>
+      {% for track in genre.tracks.all %}
+      <a href="{% url 'music:song_detail' track.slug %}">{{track}} </a>
+      {% endfor %}
+      </td>
+    {% endfor %}
+    <tr>
+
+    </tr>
+  </tbody>
+</table>
+
+</div>
+</section>
+{% endblock content %}
