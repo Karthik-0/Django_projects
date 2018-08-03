@@ -27,6 +27,7 @@
 <p class="text-line text-center"><span><strong>{{post.comments.count}} COMMENTS</strong></span></p>
 {% else %}
     <p class="text-line text-center"><span><strong>BE THE FIRST ONE TO COMMENT</strong></span></p>
+    
 {% endif %}
 
 <br>
@@ -37,6 +38,8 @@
      <hr>
    </div>
 {% endfor %}
+
+{% include 'forum/_comment_box.html'  with post=post%}
 </div>
 </div>
 

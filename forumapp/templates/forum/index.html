@@ -17,7 +17,12 @@
             </div>
             <div class="col-md-4">
                 <div class="border my-3 p-3 shadowy">
+                    {% if user.is_authenticated %}
                     <a href="" class="btn btn-block btn-primary">Start a Discussion</a>
+                    {% else %}
+                    Please <a href="{% url 'forum:login' %}">Login</a> or <a href="{% url 'forum:signup' %}">Sign up</a> to access more features.
+                    {% endif %}
+                    
                     <hr>
                   
                     {% for thread in threads %}

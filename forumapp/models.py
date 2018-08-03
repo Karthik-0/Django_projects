@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from .utils import get_unique_slug
@@ -8,7 +9,8 @@ from model_utils.models import TimeStampedModel
 class Thread(TimeStampedModel):
     title = models.CharField(max_length=50)
     subject = models.CharField(max_length=150, blank=True)
-    slug = models.SlugField(max_length=140, unique=True, blank=True)
+    slug = models.SlugField(max_length=140, unique=True, blank=True,
+                            primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
                              related_name="threads")
@@ -34,7 +36,7 @@ class User(AbstractUser):
 class Post(TimeStampedModel):
     title = models.CharField(max_length=250)
     content = models.TextField()
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, primary_key=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
                              related_name="posts")
@@ -49,6 +51,9 @@ class Post(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('post_detail', kwargs={'pk': self.slug})
 
 
 class Comment(TimeStampedModel):

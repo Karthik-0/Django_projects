@@ -12,5 +12,6 @@ urlpatterns = [
          {'template_name': 'forum/registration/login.html'}, name="login"),
     path('logout/', auth_views.logout, {'next_page': '/forum'}, name="logout"),
     path('signup/', views.SignUp.as_view(), name='signup'),
+    path('comment/', views.CommentBox.as_view(), name="comment")
 
 ]
