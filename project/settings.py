@@ -134,3 +134,5 @@ STATIC_URL = '/static/'
 SPATIALITE_LIBRARY_PATH = 'mod_spatialite'
 
 AUTH_USER_MODEL = 'forumapp.User'
+
+LOGIN_REDIRECT_URL = 'forum:index'

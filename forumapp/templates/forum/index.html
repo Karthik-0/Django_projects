@@ -1,4 +1,4 @@
-{% include 'forum/base.html' %}
+{% extends 'forum/base.html' %}
 {% load custom_filters %}
 {% block content %}
 
@@ -21,7 +21,7 @@
                     <hr>
                   
                     {% for thread in threads %}
-                        <p><span class="dot d-flex"  style="background:{{"# "|rand_color}}"><strong class="ali">{{thread}}</strong></span></p>
+                        <p><span class="dot d-flex"  style="background:{{"# "|rand_color}}"><strong class="ali"><a class="nodecor text-black" href="{% url 'forum:thread_detail' thread.slug %}">{{thread}}</a></strong></span></p>
                     {% endfor %}
                 </div>
             </div>

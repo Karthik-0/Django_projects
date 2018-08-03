@@ -13,3 +13,8 @@ def rand_color(s):
     """
     color = "%06x" % randint(0, 0xFFFFFF)
     return s.replace(' ', color)
+
+
+@register.filter(name='addcss')
+def addcss(field, css):
+    return field.as_widget(attrs={"class": css})

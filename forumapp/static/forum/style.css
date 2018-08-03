@@ -67,3 +67,7 @@ div.border.postbox:hover{
   .lightbg{
       background: rgba(224, 245, 245,0.5);
   }
+
+  .text-black{
+      color: rgba(0,0,0,0.7) !important;
+  }
