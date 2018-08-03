@@ -1,7 +1,7 @@
 from django.views import generic
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.http import HttpResponseRedirect
-from .models import Post, Thread, Comment, User
+from .models import Post, Thread, Comment
 from .forms import CustomUserCreationForm
 
 
@@ -34,23 +34,26 @@ class SignUp(generic.CreateView):
     template_name = 'forum/registration/signup.html'
 
 
-class CommentBox(generic.View):
+class CommentBox(generic.CreateView):
     model = Comment
     template_name = "forum/_comment_box.html"
     fields = ['user', 'content', 'post']
 
     def post(self, request, *args, **kwargs):
-        user_id = request.POST.get("user", "")
         post_slug = request.POST.get("post", "")
         content = request.POST.get("content", "")
-        # print(post_slug)
-        posts = Post.objects.get(pk=str(post_slug))
-        # print(posts)
-        user = User.objects.get(pk=user_id)
-        # print(user)
         bar = Comment.objects.create(
-            post=posts,
-            user=user,
+            post_id=post_slug,
+            user=request.user,
             content=content)
         bar.save()
         return HttpResponseRedirect('/forum/post/%s' % post_slug)
+
+
+class PostCreate(generic.CreateView):
+    model = Post
+    template_name = 'forum/createpost.html'
+    fields = ['title', 'content', 'thread', 'user']
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse('forum:post_detail', kwargs={'slug': self.object.slug})
