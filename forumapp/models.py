@@ -20,6 +20,9 @@ class Thread(TimeStampedModel):
     def __str__(self):
         return self.title
 
+    class Meta:
+        ordering = ['title']
+
 
 class User(AbstractUser):
     bio = models.TextField(max_length=500, blank=True)
@@ -51,7 +54,6 @@ class Comment(TimeStampedModel):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE,
                              related_name="comments")
-    created = models.DateField(auto_now_add=True)
     post = models.ForeignKey("Post", on_delete=models.CASCADE,
                              related_name="comments")
     content = models.TextField()
