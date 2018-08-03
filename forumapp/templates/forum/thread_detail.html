@@ -25,7 +25,11 @@
              {% endfor %}
             {% else %}
                 <h3 class="text-center">No Posts Yet</h3>
-            {% endif %}
+               <div class="text-center">
+                <a href="{% url 'forum:create_post' %}" class="btn btn-primary">Create a New Post</a>
+            
+               </div>
+               {% endif %}
             </div>
     </div>
 </div>

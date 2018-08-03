@@ -7,7 +7,7 @@ from model_utils.models import TimeStampedModel
 
 
 class Thread(TimeStampedModel):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, unique=True)
     subject = models.CharField(max_length=150, blank=True)
     slug = models.SlugField(max_length=140, unique=True, blank=True,
                             primary_key=True)

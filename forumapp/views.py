@@ -57,3 +57,13 @@ class PostCreate(generic.CreateView):
 
     def get_success_url(self, *args, **kwargs):
         return reverse('forum:post_detail', kwargs={'slug': self.object.slug})
+
+
+class ThreadCreate(generic.CreateView):
+    model = Thread
+    template_name = 'forum/createthread.html'
+    fields = ['title', 'subject', 'user']
+
+    def get_success_url(self, *args, **kwargs):
+        return reverse('forum:thread_detail',
+                       kwargs={'slug': self.object.slug})

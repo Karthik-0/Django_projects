@@ -6,8 +6,8 @@ app_name = 'forum'
 
 urlpatterns = [
     path('', views.ForumIndex.as_view(), name="index"),
- 
     path('post/create/', views.PostCreate.as_view(), name="create_post"),
+    path('thread/create/', views.ThreadCreate.as_view(), name="create_thread"),
     path('thread/<slug>', views.ThreadDetail.as_view(), name="thread_detail"),
     path("login/", auth_views.login,
          {'template_name': 'forum/registration/login.html'}, name="login"),

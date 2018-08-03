@@ -19,6 +19,7 @@
                 <div class="border my-3 p-3 shadowy">
                     {% if user.is_authenticated %}
                     <a href="{% url 'forum:create_post' %}" class="btn btn-block btn-primary">Start a Discussion</a>
+                    <a href="{% url 'forum:create_thread' %}" class="btn btn-block btn-warning">Start a Topic</a>
                     {% else %}
                     Please <a href="{% url 'forum:login' %}">Login</a> or <a href="{% url 'forum:signup' %}">Sign up</a> to access more features.
                     {% endif %}
