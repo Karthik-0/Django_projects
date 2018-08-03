@@ -8,8 +8,10 @@
             <div class="col-md-8">
              {% for post in posts %}
                 <div class="border postbox shadowy my-3 p-3">
-                    <h4 class="text-primary font-weight-bold">{{post}}</h4>
-                    <p>{{post.content |truncatechars_html:200}}</p>
+                    <a class="nodecor" href="{% url 'forum:post_detail' post.slug %}">
+                        <h4 class="text-primary font-weight-bold">{{post}}</h4>
+                        <p class="text-black">{{post.content |truncatechars_html:200}}</p>
+                    </a>
                 </div>
              {% endfor %}
             </div>
