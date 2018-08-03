@@ -1,5 +1,4 @@
 from django.db import models
-from django.urls import reverse
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from .utils import get_unique_slug
@@ -51,9 +50,6 @@ class Post(TimeStampedModel):
 
     def __str__(self):
         return self.title
-
-    def get_absolute_url(self):
-        return reverse('post_detail', kwargs={'pk': self.slug})
 
 
 class Comment(TimeStampedModel):

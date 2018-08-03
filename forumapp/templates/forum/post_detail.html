@@ -6,8 +6,14 @@
 
 <div class="jumbotron">
 <div class="container">
-    <h5 class="badge badge-primary badge-big">{{post.thread.title}}</h5>
+    <a href="{% url 'forum:thread_detail' post.thread.slug %}"><h5 class="badge badge-primary badge-big">{{post.thread.title}}</h5></a>
   <h3 class="font-weight-bold">{{post.title}}</h3>
+{% if user == post.user %}
+<div class="text-right">
+<a href="{% url 'forum:edit_post' post.slug %}" class="btn btn-warning">Edit</a>
+<a href="{% url 'forum:delete_post' post.slug %}" class="btn btn-danger">Delete</a>
+</div>
+{% endif %}
 
 </div>
 </div>
@@ -16,7 +22,7 @@
 <div class="row">
 <div class="col-md-8">
 <div class="border p-3 lightbg">
-<p>Post by <strong>{{post.user |capfirst}}</strong> | {{post.created}}</p>
+<p>Post by <strong>{{post.user |capfirst}}</strong> | {{post.modified}} {% if  post.modified|date:"g:i a" == post.created|date:"g:i a"  %} {% else %}<strong>(Edited)</strong>{% endif %}</p>
 
 <p class="text-justify">
 {{post.content}}
@@ -33,13 +39,22 @@
 <br>
 {% for comment in post.comments.all %}
    <div class="p-3 my-2">
-     <strong>{{comment.user |capfirst}}</strong> | {{comment.created}}
+     <div>
+     <span class="text-left"><strong>{{comment.user |capfirst}}</strong> | {{comment.created}} </span>
+     {% if user == comment.user %}
+     <span class="float-right">
+      <a href="{% url 'forum:edit_comment' comment.id %}" class="badge badge-primary">Edit</a>
+      <a href="{% url 'forum:delete_comment' comment.id %}" class="badge badge-danger">Delete</a>
+     </span>
+     {% endif %}
+     <div class="clearfix"></div>
+     </div>
      <p class="text-justify my-2">{{comment.content}}</p>
      <hr>
    </div>
 {% endfor %}
 
-{% include 'forum/_comment_box.html'  with post=post%}
+{% include 'forum/_comment_box.html'  with post=post edit_comment=edit_comment%}
 </div>
 </div>
 
