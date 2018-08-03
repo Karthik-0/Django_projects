@@ -1,0 +1,47 @@
+{% extends 'forum/base.html' %}
+
+
+{% block content %}
+
+
+<div class="jumbotron">
+<div class="container">
+    <h5 class="badge badge-primary badge-big">{{post.thread.title}}</h5>
+  <h3 class="font-weight-bold">{{post.title}}</h3>
+
+</div>
+</div>
+<section>
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+<div class="border p-3 lightbg">
+<p>Post by <strong>{{post.user |capfirst}}</strong> | {{post.created}}</p>
+
+<p class="text-justify">
+{{post.content}}
+</p>
+</div>
+<br>
+{% if post.comments.all %}
+<p class="text-line text-center"><span><strong>{{post.comments.count}} COMMENTS</strong></span></p>
+{% else %}
+    <p class="text-line text-center"><span><strong>BE THE FIRST ONE TO COMMENT</strong></span></p>
+{% endif %}
+
+<br>
+{% for comment in post.comments.all %}
+   <div class="p-3 my-2">
+     <strong>{{comment.user |capfirst}}</strong> | {{comment.created}}
+     <p class="text-justify my-2">{{comment.content}}</p>
+     <hr>
+   </div>
+{% endfor %}
+</div>
+</div>
+
+</div>
+</section>
+
+
+{% endblock content %}
