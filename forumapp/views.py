@@ -11,3 +11,9 @@ class ForumIndex(generic.ListView):
         context = super(ForumIndex, self).get_context_data(**kwargs)
         context['threads'] = Thread.objects.all()
         return context
+
+
+class PostDetails(generic.DetailView):
+    template_name = "forum/post_detail.html"
+    model = Post
+    context_object_name = "post"
