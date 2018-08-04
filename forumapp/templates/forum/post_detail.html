@@ -40,7 +40,7 @@
 {% for comment in post.comments.all %}
    <div class="p-3 my-2">
      <div>
-     <span class="text-left"><strong>{{comment.user |capfirst}}</strong> | {{comment.created}} </span>
+     <span class="text-left"><strong>{{comment.user |capfirst}}</strong> | {{comment.created}} {% if  comment.modified|date:"g:i a" == comment.created|date:"g:i a"  %} {% else %}<strong>(Edited)</strong>{% endif %}</span>
      {% if user == comment.user %}
      <span class="float-right">
       <a href="{% url 'forum:edit_comment' comment.id %}" class="badge badge-primary">Edit</a>

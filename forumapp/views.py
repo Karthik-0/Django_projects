@@ -19,7 +19,7 @@ class ForumIndex(generic.ListView):
             'oldest': '-created',
             'title': 'title',
             'reverse': '-title',
-            'latest': 'modified'
+            'latest': '-modified'
         }
         if sort is None:
             print("No sort")
