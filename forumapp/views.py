@@ -14,6 +14,20 @@ class ForumIndex(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(ForumIndex, self).get_context_data(**kwargs)
         context['threads'] = Thread.objects.all()
+        sort = self.request.GET.get('sort', None)
+        sorts = {
+            'oldest': '-created',
+            'title': 'title',
+            'reverse': '-title',
+            'latest': 'modified'
+        }
+        if sort is None:
+            print("No sort")
+            context['sort'] = 'latest'
+            context['sortvalue'] = sorts['latest']
+        else:
+            context['sort'] = sort
+            context['sortvalue'] = sorts[sort]
         return context
 
 

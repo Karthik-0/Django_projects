@@ -18,3 +18,8 @@ def rand_color(s):
 @register.filter(name='addcss')
 def addcss(field, css):
     return field.as_widget(attrs={"class": css})
+
+
+@register.filter
+def sort_by(queryset, order):
+    return queryset.order_by(order)

@@ -5,8 +5,22 @@
 <section class="my-5">
     <div class="container">
         <div class="row">
+<form action="" method="get">
+ <div class="form-group">
+    <label for="exampleFormControlSelect1">Sort By</label>
+    <select onchange="this.form.submit()" name="sort" class="form-control" id="exampleFormControlSelect1">
+      <option style="display:none;" value="{{sort}}">{{sort |capfirst}}</option>
+      <option value="latest">Latest</option>
+      <option value="title">Title</option>
+      <option value="oldest">Oldest</option>
+      <option value="reverse">Reverse</option>  
+    </select>
+  </div> 
+</form> 
+        </div>
+        <div class="row">
             <div class="col-md-8">
-             {% for post in posts %}
+             {% for post in posts|sort_by:sortvalue %}
                 <div class="border postbox shadowy my-3 p-3">
                     <a class="nodecor" href="{% url 'forum:post_detail' post.slug %}">
                         <h4 class="text-primary font-weight-bold">{{post}}</h4>
