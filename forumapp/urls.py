@@ -18,6 +18,8 @@ urlpatterns = [
     path('password/change/', views.change_password, name='change_password'),
     path('thread/<slug>/delete/',
          views.ThreadDelete.as_view(), name="delete_thread"),
+    path('users/', views.UserList.as_view(), name="user_list"),
+    path('users/edit', views.UserEdit.as_view(), name="edit_user"),
     path('comment/', views.CommentBox.as_view(), name="comment"),
     path('comment/edit/<int:pk>',
          views.CommentEdit.as_view(), name="edit_comment"),

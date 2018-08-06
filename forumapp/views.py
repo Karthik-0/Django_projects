@@ -8,7 +8,8 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from .decorators import moderator_required
-from .models import Post, Thread, Comment
+from django.contrib.admin.views.decorators import staff_member_required
+from .models import Post, Thread, Comment, User
 from .forms import CustomUserCreationForm
 
 
@@ -160,3 +161,22 @@ class ThreadDelete(generic.DeleteView):
 
     def get(self, *args, **kwargs):
         return self.post(*args, **kwargs)
+
+
+@method_decorator(staff_member_required, name="dispatch")
+class UserList(generic.ListView):
+    model = User
+    template_name = "forum/registration/user_list.html"
+    context_object_name = "users"
+
+
+class UserEdit(generic.View):
+
+    def post(self, request, *args, **kwargs):
+        user_id = request.POST.get("user_id", "")
+        bar = User.objects.get(pk=user_id)
+        bar.is_moderator = True
+        bar.save()
+        messages.success(request, 'Operation Successfull.')
+        url = reverse('forum:index')
+        return HttpResponseRedirect(url)

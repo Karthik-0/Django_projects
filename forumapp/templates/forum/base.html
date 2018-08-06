@@ -50,7 +50,7 @@
           {% endif %}
           <li class="nav-item">
           {% if user.is_superuser %}
-            <a href="" class="nav-link">Users</a>
+            <a href="{% url 'forum:user_list' %}" class="nav-link">Users</a>
           {% endif %}
           </li>
         </div>
