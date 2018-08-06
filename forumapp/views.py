@@ -3,14 +3,16 @@ from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from django.utils.decorators import method_decorator
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
-
+from .decorators import moderator_required
 from .models import Post, Thread, Comment
 from .forms import CustomUserCreationForm
 
 
+# @method_decorator(moderator_required, name='dispatch')
 class ForumIndex(generic.ListView):
     model = Post
     template_name = "forum/index.html"
@@ -141,7 +143,7 @@ def change_password(request):
             update_session_auth_hash(request, user)  # Important!
             messages.success(request,
                              'Your password was successfully updated!')
-            return redirect('change_password')
+            return redirect('forum:index')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
@@ -149,3 +151,12 @@ def change_password(request):
     return render(request, 'forum/registration/change_password.html', {
         'form': form
     })
+
+
+@method_decorator(moderator_required, name='dispatch')
+class ThreadDelete(generic.DeleteView):
+    model = Thread
+    success_url = reverse_lazy('forum:index')
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)

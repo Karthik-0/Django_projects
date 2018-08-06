@@ -7,6 +7,11 @@
  <div class="container text-center">
   <h1 class="display-5"><strong class="text-primary">{{thread.title}}</strong></h1>
   <p class="lead">{{thread.subject}}</p>
+{% if user.is_moderator %}
+<div class="text-right">
+<a href="{% url 'forum:delete_thread' thread.pk%}" class="btn btn-danger">Delete</a>
+</div>
+{% endif %}
  </div>
 </div>
 </section>

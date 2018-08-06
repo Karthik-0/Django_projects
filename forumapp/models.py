@@ -30,6 +30,7 @@ class User(AbstractUser):
     bio = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=30, blank=True)
     birth_date = models.DateField(null=True, blank=True)
+    is_moderator = models.BooleanField('Moderator', default=False)
 
 
 class Post(TimeStampedModel):

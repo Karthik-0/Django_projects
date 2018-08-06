@@ -48,6 +48,11 @@
           <div class="dropdown-divider"></div>
          <a href="{% url 'forum:logout' %}" class="dropdown-item">Logout</a>
           {% endif %}
+          <li class="nav-item">
+          {% if user.is_superuser %}
+            <a href="" class="nav-link">Users</a>
+          {% endif %}
+          </li>
         </div>
       </li>
     </ul>
@@ -55,6 +60,7 @@
   </div>
 </div>
 </nav>
+    {% include 'forum/_messages.html' %}
     {% block content %}
     {% endblock content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.js"></script>
