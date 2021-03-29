@@ -33,7 +33,7 @@ pickleshare==0.7.4
 prompt-toolkit==1.0.15
 ptyprocess==0.6.0
 pyasn1==0.1.9
-Pygments==2.2.0
+Pygments==2.7.4
 pygobject==3.20.0
 pyOpenSSL==0.15.1
 pyparsing==2.2.0
